@@ -1,0 +1,35 @@
+{
+  "name": "simple-stats-server",
+  "version": "0.0.1",
+  "description": "dead-simple resource stats for Node.js servers",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/couchand/simple-stats-server"
+  },
+  "keywords": [
+    "server",
+    "stats",
+    "resource",
+    "utilization",
+    "usage",
+    "uptime",
+    "memory",
+    "cpu"
+  ],
+  "author": "Andrew Couch <simple-stats@andrewcou.ch>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/couchand/simple-stats-server/issues"
+  },
+  "dependencies": {
+    "something-something": "0.0.1"
+  },
+  "devDependencies": {
+    "chai": "~1.9.1",
+    "mocha": "~1.20.1"
+  }
+}

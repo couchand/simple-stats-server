@@ -1,0 +1,11 @@
+{
+  "name": "example-app",
+  "version": "0.0.0",
+  "description": "an little example of the simple stats server",
+  "main": "server.js",
+  "author": "Andrew Couch <simple-stats@andrewcou.ch>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "~4.6.1"
+  }
+}
