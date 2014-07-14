@@ -26,6 +26,7 @@
     "url": "https://github.com/couchand/simple-stats-server/issues"
   },
   "dependencies": {
+    "path-match": "~1.1.1",
     "something-something": "0.0.1"
   },
   "devDependencies": {
