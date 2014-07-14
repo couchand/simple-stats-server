@@ -1,6 +1,6 @@
 {
   "name": "simple-stats-server",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "dead-simple resource stats for Node.js servers",
   "main": "index.js",
   "scripts": {
