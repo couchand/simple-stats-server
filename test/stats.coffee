@@ -9,6 +9,8 @@ sss = require '../src'
 describe 'stats', ->
   stats = beforeEach -> stats = sss()
 
+  after -> stats.end()
+
   describe 'check', ->
     it 'adds a checker', ->
       called = no
@@ -171,7 +173,7 @@ describe 'stats', ->
 
   describe 'cpu', ->
     it 'has an index view', (done) ->
-      @timeout 1000 * 61
+      @timeout 1000 * 62
       stats.get '/cpu', (err, result) ->
         should.not.exist err
         result.should.have.property '1s'
@@ -185,11 +187,10 @@ describe 'stats', ->
         done()
 
     it 'drills down', (done) ->
-      @timeout 1000 * 16
-      count = 0
+      @timeout 1000 * 17
+      count = 3
 
       test = (stat) ->
-        count += 1
         stats.get "/cpu/#{stat}", (err, result) ->
           should.not.exist err
           should.exist result.length
@@ -201,7 +202,7 @@ describe 'stats', ->
       test '15s'
 
   it 'has an index view', (done) ->
-    @timeout 1000 * 61
+    @timeout 1000 * 62
     stats.get '/', (err, result) ->
       should.not.exist err
       result.should.have.property 'cpu'
@@ -220,7 +221,7 @@ describe 'stats', ->
       done()
 
   it 'acts as middleware', (done) ->
-    @timeout 1000 * 61
+    @timeout 1000 * 62
     req = url: '/'
 
     res = send: ->

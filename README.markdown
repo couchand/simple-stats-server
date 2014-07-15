@@ -181,4 +181,9 @@ root `/` will return the whole structure).  The function `cb` should
 have the signature `(err, result) ->`.  If the path doesn't match
 anything, `err` is `404`.
 
+#### stats.end() ####
+
+The server will set up an interval timer to poll the cpu.  Use this
+method to cancel that timer when shutting down the server.
+
 ##### ╭╮☲☲☲╭╮ #####

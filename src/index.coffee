@@ -57,7 +57,9 @@ module.exports = sss = ->
     .concat Object.keys(modules).map (type) ->
       collection = modules[type]
       route "/#{type}/:name", (params, cb) ->
-        return cb 404 unless params.name in collection.getNames()
+        unless params.name in collection.getNames()
+          cb 404 if cb
+          return
 
         handle = collection.get(params.name)
         handle (value) -> cb null, value
@@ -71,7 +73,9 @@ module.exports = sss = ->
     .concat Object.keys(metrics).map (type) ->
       metric = metrics[type]
       route "/#{type}/:name", (params, cb) ->
-        return cb 404 unless params.name of metric
+        unless params.name of metric
+          cb 404 if cb
+          return
 
         metric[params.name] cb
 
@@ -83,6 +87,11 @@ module.exports = sss = ->
     for route in routes
       params = route.match path
       return route.handle params, cb if params
-    cb 404
+    cb 404 if cb
+
+  middleware.end = ->
+    metrics.cpu.cancel()
+
+  metrics.cpu.collect()
 
   middleware
