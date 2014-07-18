@@ -1,7 +1,7 @@
 # version sampler
 
 STATS_NAME    = "stats"
-STATS_VERSION = "0.0.1"
+STATS_VERSION = "[%STATS_VERSION%]"
 
 module.exports = versions = {}
 
