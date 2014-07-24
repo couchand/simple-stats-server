@@ -7,33 +7,25 @@ os = require 'os'
 #     cb defaults to noop
 
 #   samples the point-in-time memory usage, callsback with and returns
-#   the percentage (for flexibility)
+#   the usage information.
 
-# one for each of system, process, heap
+# one for each of system and process
 
 module.exports =
   system: (cb) ->
     cb = (->) unless typeof cb is 'function'
 
-    total = os.totalmem()
-    free = os.freemem()
+    util =
+      total: os.totalmem()
+      free: os.freemem()
 
-    cb null, util = (total - free) / total
+    cb null, util
     util
 
   process: (cb) ->
     cb = (->) unless typeof cb is 'function'
 
-    total = os.totalmem()
-    used = process.memoryUsage().rss
+    util = process.memoryUsage()
 
-    cb null, util = used / total
-    util
-
-  heap: (cb) ->
-    cb = (->) unless typeof cb is 'function'
-
-    mem = process.memoryUsage()
-
-    cb null, util = mem.heapUsed / mem.heapTotal
+    cb null, util
     util

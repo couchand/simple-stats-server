@@ -151,25 +151,27 @@ describe 'stats', ->
     it 'has an index view', ->
       stats.get '/memory', (err, result) ->
         should.not.exist err
-        result.should.have.property 'heap'
         result.should.have.property 'system'
+        result.system.should.have.property 'total'
+        result.system.should.have.property 'free'
+
         result.should.have.property 'process'
-        parseFloat result.heap
-          .should.equal result.heap
-        parseFloat result.system
-          .should.equal result.system
-        parseFloat result.process
-          .should.equal result.process
+        result.process.should.have.property 'rss'
+        result.process.should.have.property 'heapTotal'
+        result.process.should.have.property 'heapUsed'
 
     it 'drills down', ->
       test = (stat) ->
-        stats.get "/memory/#{stat}", (err, result) ->
+        stats.get "/memory/system", (err, result) ->
           should.not.exist err
-          parseFloat(result).should.equal result
+          result.should.have.property 'total'
+          result.should.have.property 'free'
 
-      test 'heap'
-      test 'system'
-      test 'process'
+        stats.get "/memory/process", (err, result) ->
+          should.not.exist err
+          result.should.have.property 'rss'
+          result.should.have.property 'heapTotal'
+          result.should.have.property 'heapUsed'
 
   describe 'cpu', ->
     it 'has an index view', (done) ->
